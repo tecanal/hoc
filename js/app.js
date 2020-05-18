@@ -31,7 +31,7 @@ window.onload = () => {
         indentUnit: 4,
         lineWrapping: true,
         styleActiveLine: { nonEmpty: true },
-        value: "setTileColor(0, 0, \"black\");",
+        value: "setFillColor(\"black\");\nfill(0, 0);",
         extraKeys: {
             "Ctrl-/": instance => commentSelection(),
             "Cmd-/": instance => commentSelection()
@@ -97,8 +97,8 @@ window.onload = () => {
         let editor = document.querySelector('.CodeMirror').CodeMirror;
 
         // Check if the user has code saved before
-        if (localStorage.getItem("code"))
-            editor.setValue(localStorage.getItem("code"));
+        if (localStorage.getItem("hoc"))
+            editor.setValue(localStorage.getItem("hoc"));
     }
 
     // attach an event listener for changes
@@ -112,12 +112,12 @@ window.onload = () => {
 
             // if localStorage is available, save the code
             if (hasLocalStorage)
-                localStorage.setItem("code", editor.getValue());
+                localStorage.setItem("hoc", editor.getValue());
         }
         else {
             // if localStorage is available, save the code
             if (hasLocalStorage)
-                localStorage.setItem("code", editor.getValue());
+                localStorage.setItem("hoc", editor.getValue());
         }
     });
 
@@ -446,7 +446,7 @@ function executeCode() {
     let editor = document.querySelector('.CodeMirror').CodeMirror;
 
     // instrument code to prevent infinite loops
-    let code = "(async function() { new HoC();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n })().catch(e => console.error(e))";
+    let code = "(async function() { _clear();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n })().catch(e => console.error(e))";
     
     // add code as a script to page + execute
     let script = document.createElement('script');
