@@ -22,8 +22,9 @@ window.onload = () => {
 
     // create CodeMirror editor
     let editor = CodeMirror(document.getElementById("editor"), {
-        mode: { name: "javascript", json: true },
+        mode: { name: "javascript" },
         autoCloseBrackets: true,
+        matchBrackets: true,
         lineNumbers: true,
         indentWithTabs: true,
         foldGutter: true,
