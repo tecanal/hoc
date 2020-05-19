@@ -16,11 +16,17 @@
     </head>
 
     <body>
-        <div class="nav">
-            <!-- <a>1</a> -->
+        <nav role="navigation">
+            <ul>
+                <li>
+                    <a>1</a>
+                </li>
 
-            <button id="runCode" class="button-glow" onclick="runCode()" style="float: right">Run Code</button>
-        </div>
+                <li id="runCode">
+                    <button class="button-glow" onclick="runCode()" style="float: right">Run Code</button>
+                </li>
+            </ul>
+        </nav>
 
         <div class="panel-container">
             <div class="panel-left">
@@ -62,30 +68,6 @@
                 <div class="modal-body">
                     <div class="modalContent" id="lessons" style="display: none;">
                        
-                    </div>
-
-                    <div class="modalContent" id="tutorials" style="display: none;"></div>
-
-                    <div class="modalContent" id="help" style="display: none;"></div>
-
-                    <div class="modalContent" id="about" style="display: none;">
-                        <p>
-                            <input type="checkbox" id="includeConsole" name="includeConsole" checked>
-                            <label for="includeConsole">Include Console in Exported Page</label>
-                        </p>
-                       
-                        <p>
-                            <button onclick="exportPage()">Export Code to HTML Page</button>
-                        </p>
-                        
-                        <p>
-                            <button onclick="shareCode()">Share Code with URL</button>
-                        </p>
-
-                        <p>
-                            <input type="checkbox" id="enable" name="enable" onclick="Jeroo.prototype.enableIslandEditingMode(this.checked)">
-                            <label for="enable">Enable Jeroo Island Editing Mode</label>
-                        </p>
                     </div>
                 </div>
 

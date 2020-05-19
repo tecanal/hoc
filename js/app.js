@@ -9,11 +9,6 @@ let autoRun = false;
 window.onerror = (message, url, lineNum, colNum, error) => console.error(message);
 
 window.onload = () => {
-    // detect if on a mobile device
-    if (window.innerWidth <= 768) {
-        setTimeout(() =>  alert("Are you on a mobile device? Although Mosaic has a mobile version, for best performance and more content, please check this website on a computer."), 2000);
-    }
-
     // create splitter panel
     $(".panel-left").resizable({
         handleSelector: ".splitter",
