@@ -232,7 +232,7 @@ function renderLessons() {
     .then(response => response.json())
     .then(data => {
         // render all of the lessons
-        data.lessons.forEach(lesson => {
+        data.lessons.forEach((lesson, index) => {
             // create a div for each lesson
             const lessonContainer = document.createElement("div");
             lessonContainer.id = lesson.name.split(" ").join("_").toLowerCase();
@@ -241,11 +241,15 @@ function renderLessons() {
             // add the lesson to the lessons div
             document.getElementById("lessons").appendChild(lessonContainer);
 
-            const option = document.createElement("option");
-            option.text = lesson.name;
-            option.value = "#" + lessonContainer.id;
+            // create a menu item to open the lesson
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = index + 1;
+            a.onclick = () => openModal(index);
+            li.appendChild(a);
 
-            lessonSelector.add(option);
+            // appendTo()
+            lessonSelector.insertBefore(li, lessonSelector.lastElementChild);
 
             // render the blocks for that lesson
             renderBlocks(lesson.blocks, lessonContainer);
@@ -268,7 +272,7 @@ function clearEventListeners() {
  * Open the modal to a certain page of content.
  * @param {String} content 
  */
-function openModal(content) {
+function openModal(index) {
     const modal = document.getElementById("myModal");
 
     // show modal
@@ -277,33 +281,13 @@ function openModal(content) {
     // scroll to top
     document.getElementsByClassName("modal-body")[0].scrollTop = 0;
 
-    // hide all modal content possibilites
-    for (const el of document.getElementsByClassName("modalContent"))
+    // hide all lessons that may have previously been opened
+    const lessons = document.getElementsByClassName("lesson");
+    for (const el of lessons)
         el.style.display = "none";
 
-    let title;
-    if (content == "lessons")  {
-        title = "Learn JavaScript";
-
-        document.getElementById("lessons").style.display = "";
-    }
-    else if (content == "tutorials") {
-        title = "Mosaic Tutorials";
-
-        document.getElementById("tutorials").style.display = "";
-    }
-    else if (content == "help") {
-        title = "Coding Help"
-
-        document.getElementById("help").style.display = "";
-    }
-    else if (content == "about") {
-        title = "About Mosaic";
-
-        document.getElementById("about").style.display = "";
-    }
-
-    document.getElementById("modalTitle").innerText = title;
+    // show only the selected lesson
+    lessons[index].style.display = "";
 }
 
 /**

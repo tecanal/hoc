@@ -17,10 +17,8 @@
 
     <body>
         <nav role="navigation">
-            <ul>
-                <li>
-                    <a>1</a>
-                </li>
+            <ul id="lessonSelector">
+                <li id="rootNode" style="display: none;"></li>
 
                 <li id="runCode">
                     <button class="button-glow" onclick="runCode()" style="float: right">Run Code</button>
@@ -55,27 +53,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="close" onclick="closeModal()">&times;</span>
-                    
-                    <h2 id="modalTitle"></h2>
-
-                    <select id="lessonSelector">
-                        <option>Jump to...</option>
-                    </select>
-
-                    <hr>
                 </div>
 
                 <div class="modal-body">
-                    <div class="modalContent" id="lessons" style="display: none;">
-                       
-                    </div>
+                    <div class="modalContent" id="lessons"></div>
                 </div>
 
-                <div class="modal-footer">
-                    <p style="text-align: right">
-                        <button class="btn" onclick="closeModal()">Close</button>
-                    </p>
-                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
 
