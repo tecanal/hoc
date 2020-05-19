@@ -557,6 +557,7 @@ class Mosaic {
         for (let x = 0; x < this._width; x++) {
             for (let y = 0; y < this._height; y++) {
                 this.getTile(x, y).backgroundImage = "";
+                this.getTile(x, y).cellRef.style.border = "1px solid black";
                 this.getTile(x, y).transform = "";
                 this.getTile(x, y).color = "#eeeeee";
             }

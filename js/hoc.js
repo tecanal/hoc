@@ -12,8 +12,17 @@ let _strokeColor = "black";
 /**
  * Clears the Mosaic, this should only be called internally on every new runCode() call.
  */
-function _clear() {
+function _reset() {
+    // clear mosaic
     _moz.clear();
+
+    // clear all event listeners
+    for (let x = 0; x < _width; x++) {
+        for (let y = 0; y < _height; y++) {
+            onClick(x, y, () => {});
+            onMouseOver(x, y, () => {});
+        }
+    }
 }
 
 /**
@@ -175,4 +184,24 @@ function setHeight(height) {
     _height = height;
 
     _resize();
+}
+
+/**
+ * Add a click listener to the Mosaic tile.
+ * @param {Number} x 
+ * @param {Number} y 
+ * @param {Function} func 
+ */
+function onClick(x, y, func) {
+    _moz.setTileOnClick(x, y, func);
+}
+
+/**
+ * Add a mouse over listener to the Mosaic tile.
+ * @param {Number} x 
+ * @param {Number} y 
+ * @param {Function} func 
+ */
+function onMouseOver(x, y, func) {
+    _moz.setTileOnMouseOver(x, y, func);
 }

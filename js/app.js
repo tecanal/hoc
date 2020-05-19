@@ -447,7 +447,7 @@ function executeCode() {
     let editor = document.querySelector('.CodeMirror').CodeMirror;
 
     // instrument code to prevent infinite loops
-    let code = "(async function() { _clear();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n })().catch(e => console.error(e))";
+    let code = "(async function() { _reset();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n })().catch(e => console.error(e))";
     
     // add code as a script to page + execute
     let script = document.createElement('script');
