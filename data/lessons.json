@@ -22,6 +22,14 @@
                 {
                     "type": "p",
                     "content": "Most of the time, but not always, functions expect values called <b>parameters</b>. These are important pieces of data that allow the function to do the work it was designed to do. In the case of the <b>fill()</b> function, it takes a Number parameter <i>x</i> and a Number parameter <i>y</i>."
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Your task for this level is just to hit the Run Code button to see the code in action."
                 }
             ]
         },
@@ -42,15 +50,48 @@
                 },
                 {
                     "type": "code",
-                    "content": "let thisIsTheVariableName = 19;"
+                    "content": "let thisIsTheVariableName = \"JavaScript is cool.\";"
                 },
                 {
                     "type": "p",
-                    "content": "JavaScript is dynamically typed, which means that a variable with the same name can change the type of data at any moment during the program's runtime. With some other languages, you have to specify the type when you create the variable, but JavaScript is much more flexible in this regard."
+                    "content": "JavaScript is dynamically typed, which means that a variable with the same name can change the type of data at any moment during the program's runtime. With some other languages, you have to write the type when you create the variable, but JavaScript's system is much more flexible. Below are the basic types in JavaScript, but we will mostly be using Numbers, Strings, and Booleans during this hour."
                 },
                 {
                     "type": "code",
                     "content": "let myVariable = 5; // Number\nmyVariable = \"blah\"; // String\nmyVariable = false; // Boolean\nmyVariable = [1, 2, 3]; // Array"
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Your task for this level is to create a variable called <i>myFavoriteColor</i> and use <b>setFillColor()</b> and <b>fill()</b> to color the tile at (0, 1) to be your favorite color. For the purpose of this activity, choose between the following colors:"
+                },
+                {
+                    "type": "ul",
+                    "blocks": [
+                        {
+                            "type": "li",
+                            "content": "red"
+                        },
+                        {
+                            "type": "li",
+                            "content": "green"
+                        },
+                        {
+                            "type": "li",
+                            "content": "blue"
+                        },
+                        {
+                            "type": "li",
+                            "content": "yellow"
+                        },
+                        {
+                            "type": "li",
+                            "content": "purple"
+                        }
+                    ]
                 }
             ]
         },

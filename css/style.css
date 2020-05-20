@@ -50,7 +50,8 @@ nav ul li a.completed {
     font-size: 1rem; 
 }
 
-#tutorials pre, #lessons pre, #tutorials pre, #help pre  { position: relative; }
+#lessons p + ul { margin-top: -1rem; }
+#lessons pre  { position: relative; }
 .copyToEditor { position: absolute; top: 5px; right: 5px; content: "Copy to Editor"; }
 .copyToEditor:hover { text-decoration: underline; }
 
