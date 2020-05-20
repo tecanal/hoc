@@ -27,7 +27,7 @@ window.onload = () => {
         indentUnit: 4,
         lineWrapping: true,
         styleActiveLine: { nonEmpty: true },
-        value: "setFillColor(\"black\");\nfill(0, 0);",
+        value: "setFillColor(\"black\");\nfill(0, 0);\n\nsetStrokeColor(\"red\");\nstroke(0, 0);",
         extraKeys: {
             "Ctrl-/": instance => commentSelection(),
             "Cmd-/": instance => commentSelection()
@@ -119,6 +119,9 @@ window.onload = () => {
 
     // render modal text from .json data files
     renderLessons();
+
+    // show the welcome modal
+    // welcomeModal();
 }
 
 /**
@@ -278,6 +281,11 @@ function openModal(index) {
     // show modal
     modal.style.display = "block";
 
+    // hide welcome modal content
+    document.getElementById("welcome").style.display = "none";
+
+    document.getElementById("lessons").style.display = "";
+
     // scroll to top
     document.getElementsByClassName("modal-body")[0].scrollTop = 0;
 
@@ -288,6 +296,21 @@ function openModal(index) {
 
     // show only the selected lesson
     lessons[index].style.display = "";
+
+    // set the current level for code correctness checking
+    _setCurrentLevel(index + 1);
+}
+
+function welcomeModal() {
+    const modal = document.getElementById("myModal");
+
+    // show modal
+    modal.style.display = "block";
+
+    // hide all lessons
+    document.getElementById("lessons").style.display = "none";
+
+    document.getElementById("welcome").style.display = "";
 }
 
 /**
@@ -426,7 +449,7 @@ function executeCode() {
     let editor = document.querySelector('.CodeMirror').CodeMirror;
 
     // instrument code to prevent infinite loops
-    let code = "(async function() { _reset();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n })().catch(e => console.error(e))";
+    let code = "(async function() { _reset();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n_checkCode();\n })().catch(e => console.error(e))";
     
     // add code as a script to page + execute
     let script = document.createElement('script');
@@ -454,6 +477,11 @@ function executeCode() {
     }
 }
 
+/**
+ * Render JSON into HTML recursively.
+ * @param {Object[]} blocks 
+ * @param {Element} parent 
+ */
 function renderBlocks(blocks, parent) {
     for (const block of blocks) {
         // if the block doesn't have blocks in it

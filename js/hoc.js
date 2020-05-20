@@ -9,6 +9,8 @@ let _strokeWidth = 1;
 let _strokeStyle = "solid";
 let _strokeColor = "black";
 
+let _currentLevel = 1;
+
 /**
  * Clears the Mosaic, this should only be called internally on every new runCode() call.
  */
@@ -23,6 +25,30 @@ function _reset() {
             onMouseOver(x, y, () => {});
         }
     }
+}
+
+/**
+ * Set the current level that the user is attempting in order to test the code for correctness
+ * on runCode().
+ * @param {Number} level 
+ */
+function _setCurrentLevel(level) {
+    _currentLevel = level;
+}
+
+/**
+ * Check the user's code to see if they have correctly completed the lesson.
+ */
+function _checkCode() {
+    // Level 1
+    if (_currentLevel == 1) {
+        if (_moz.getTile(0, 0).color != "black" || _moz.getTile(0, 0).borderColor != "red")
+            throw new Error("The fill or stroke color of tile (0, 0) is not the right color.");
+    }
+
+    // mark the lesson as completed
+    const lessonSelector = document.getElementById("lessonSelector");
+    lessonSelector.children[_currentLevel].children[0].classList.add("completed");
 }
 
 /**

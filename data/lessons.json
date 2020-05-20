@@ -1,6 +1,31 @@
 {
     "lessons": [
         {
+            "name": "What is Code?",
+            "blocks": [
+                {
+                    "type": "h1",
+                    "content": "What is Code?"
+                },
+                {
+                    "type": "p",
+                    "content": "Code is a way to write a step-by-step guide for the computer to do what you (the programmer) want to do. As you may or may not know, code is not written in plain, human English. Instead, they are written in <b>programming languages</b>. Just like out in the world, there are many different programming languages. The language that you will be learning throughout the next hour is called <b>JavaScript</b>."
+                },
+                {
+                    "type": "p",
+                    "content": "The code you see in the editor right now consists of four <b>functions</b>. A <b>function</b> is a name that correspond to a chunk of code that does a certain task."
+                },
+                {
+                    "type": "p",
+                    "content": "<b>fill()</b> sets the color of a tile at the given (x, y) coordinate. <b>setFillColor()</b> does exactly that it sounds like, it sets the fill color that the <b>fill()</b> function uses. When creating functions, programmers like you need to choose <i>descriptive</i> names so that other people know what's going on."
+                },
+                {
+                    "type": "p",
+                    "content": "Most of the time, but not always, functions expect values called <b>parameters</b>. These are important pieces of data that allow the function to do the work it was designed to do. In the case of the <b>fill()</b> function, it takes a Number parameter <i>x</i> and a Number parameter <i>y</i>."
+                }
+            ]
+        },
+        {
             "name": "Variables",
             "blocks": [
                 {
@@ -13,11 +38,11 @@
                 },
                 {
                     "type": "p",
-                    "content": "In JavaScript, you can have a variable that changes value (<i>mutable</i>) or one that does not change value (<i>immutable</i>). For mutable variables, you use <b>let</b> and for immutable variables, you use <b>const</b>."
+                    "content": "In JavaScript, you use the <b>let</b> keyword to define a variable."
                 },
                 {
                     "type": "code",
-                    "content": "const myName = \"Rees\";\n\nlet myAge = 19;"
+                    "content": "let thisIsTheVariableName = 19;"
                 },
                 {
                     "type": "p",
@@ -26,84 +51,6 @@
                 {
                     "type": "code",
                     "content": "let myVariable = 5; // Number\nmyVariable = \"blah\"; // String\nmyVariable = false; // Boolean\nmyVariable = [1, 2, 3]; // Array"
-                },
-                {
-                    "type": "p",
-                    "content": "A more advanced type of JavaScript variables are something called objects. Objects are containers of properties and/or functions designated to make  certain tasks easier and safer through co-locating data and data actions."
-                },
-                {
-                    "type": "code",
-                    "content": "const moz = new Mosaic(5, 5);"
-                }
-            ]
-        },
-        {
-            "name": "Operators",
-            "blocks": [
-                {
-                    "type": "h1",
-                    "content": "Operators"
-                },
-                {
-                    "type": "p",
-                    "content": "There are many types of operators in JavaScript, but we will only focus on two main ones, arithmetic operators and assignment operators."
-                },
-                {
-                    "type": "p",
-                    "content": "The arithmetic operators look just like the ones you would use in your math class."
-                },
-                {
-                    "type": "code",
-                    "content": "const four = 2 + 2; // Addition\nconst two = 5 - 3; // Subtraction\nconst eight = 4 * 2; // Multiplication\nconst three = 6 / 2; // Division\nconst one = 5 % 2; // Modulus (Remainder)"
-                },
-                {
-                    "type": "p",
-                    "content": "You have already seen the most basic assignment operator which is just the equals sign, but you can also combine the equals sign with an arithmetic operator to utilize different assignment operators that help save the amount of typing you have to do."
-                },
-                {
-                    "type": "code",
-                    "content": "let count = 5;\n\ncount += 4;\ncount -= 3;\ncount *= 1;\ncount /= 2;"
-                },
-                {
-                    "type": "p",
-                    "content": "If you are just adding or subtracting one from a variable, there are additional shorthand operators to help you."
-                },
-                {
-                    "type": "code",
-                    "content": "let count = 0;\n\ncount++;\ncount--;"
-                }
-            ]
-        },
-        {
-            "name": "Calling Functions",
-            "blocks": [
-                {
-                    "type": "h1",
-                    "content": "Calling Functions"
-                },
-                {
-                    "type": "p",
-                    "content": "Functions are pieces of code that have been grouped together and can be called upon by a name. Functions can be attached to an object, or just for general use."
-                },
-                {
-                    "type": "code",
-                    "content": "alert();"
-                },
-                {
-                    "type": "code",
-                    "content": "console.clear();"
-                },
-                {
-                    "type": "p",
-                    "content": "When you call a function, you sometimes pass parameters to the function. There are pre-defined inputs that the function expects, you give them by putting them in parenthesis after the function name."
-                },
-                {
-                    "type": "code",
-                    "content": "console.log(\"Hello, World!\");"
-                },
-                {
-                    "type": "code",
-                    "content": "const moz = new Mosaic(10, 10);\nmoz.setTileColor(0, 0, \"black\";"
                 }
             ]
         },
@@ -205,10 +152,6 @@
                 {
                     "type": "p",
                     "content": "As previously written, functions are lines of code that have been grouped together and can be called upon by a name. These functions can take inputs called parameters, and can return outputs."
-                },
-                {
-                    "type": "p",
-                    "content": "You can have two functions with the same name, as long as they have different parameters, or orders of parameters. This is called function overloading."
                 },
                 {
                     "type": "code",
