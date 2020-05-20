@@ -53,6 +53,43 @@ function _checkCode() {
         if (!["red", "green", "blue", "yellow", "purple"].includes(_moz.getTile(0, 1).color))
             throw new Error("You did not fill the tile (0, 1) with a correct color.");
     }
+    // Level 3
+    else if (_currentLevel == 3) {
+
+    }
+    // Level 4
+    else if (_currentLevel == 4) {
+        // rectangle dimensions as defined in the level task
+        const length = 5;
+        const height = 3;
+
+        for (let x = 0; x < _width; x++) {
+            for (let y = 0; y < _height; y++) {
+                // if inside of the rectangle, make sure it is all colored
+                if (x < length && y < height) {
+                    if (_moz.getTile(x, y).color == "#eeeeee")
+                        throw new Error("You did not color the full region of the rectangle that was described in the task.");
+                }
+                // if outside the rectangle, make sure it is not colored
+                else {
+                    if (_moz.getTile(x, y).color != "#eeeeee")
+                        throw new Error("You colored outside the region of the rectangle that was described in the task.");
+                }
+            }
+        }
+    }
+    // Level 5
+    else if (_currentLevel == 5) {
+
+    }
+    // Level 6
+    else if (_currentLevel == 6) {
+
+    }
+    // Level 7
+    else if (_currentLevel == 7) {
+
+    }
     // If not a valid level number, exit before trying to mark as complete
     else {
         return;
@@ -222,6 +259,13 @@ function setHeight(height) {
     _height = height;
 
     _resize();
+}
+
+/**
+ * Clear the Mosaic.
+ */
+function clear() {
+    _moz.clear();
 }
 
 /**

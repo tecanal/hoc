@@ -58,7 +58,7 @@
                 },
                 {
                     "type": "code",
-                    "content": "let myVariable = 5; // Number\nmyVariable = \"blah\"; // String\nmyVariable = false; // Boolean\nmyVariable = [1, 2, 3]; // Array"
+                    "content": "let myVariable = 5; // Number\nmyVariable = \"purple\"; // String\nmyVariable = false; // Boolean\nmyVariable = [1, 2, 3]; // Array"
                 },
                 {
                     "type": "h2",
@@ -117,6 +117,10 @@
                 {
                     "type": "code",
                     "content": "if (grade >= 90) {\n\t// Do stuff here\n}\nelse if (grade >= 80) {\n\t// Do stuff here\n}\nelse {\n\t// Do stuff here\n}"
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
                 }
             ]
         },
@@ -175,11 +179,23 @@
                 },
                 {
                     "type": "code",
-                    "content": "for (let i = 0; i < moz.width; i++) {\n\t// Do stuff here \n}"
+                    "content": "for (let x = 0; x < getWidth(); x++) {\n\t// Do stuff here \n}"
                 },
                 {
                     "type": "p",
-                    "content": "You can also put loops inside of other loops, this is called nesting. The inner loops finish first, then goes outwards."
+                    "content": "You can also put loops inside of other loops, this is called <b>nesting</b>. The inner loops finish first, then goes outwards."
+                },
+                {
+                    "type": "code",
+                    "content": "for (let x = 0; x < getWidth(); x++) {\n\tfor (let y = 0; y < getHeight(); y++) {\n\t\t// Do stuff here\n\t}\n}"
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Your task is to fill a rectangle that has a length of 5 and a height of three. It can be any color, but it must be a rectange of the given dimensions."
                 }
             ]
         },
@@ -197,6 +213,76 @@
                 {
                     "type": "code",
                     "content": "const moz = new Mosaic(5, 5);\n\nfunction drawLine() {\n\tfor (let x = 0; x < moz.width; x++) {\n\t\tmoz.setTileColor(x, 0, \"blue\");\n\t}\n}"
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
+                }
+            ]
+        },
+        {
+            "name": "Setting Intervals",
+            "blocks": [
+                {
+                    "type": "h1",
+                    "content": "Setting Intervals"
+                },
+                {
+                    "type": "p",
+                    "content": "An interval is something like a loop. It allows a function to be called on an interval, infinitely (or until you clear the interval)."
+                },
+                {
+                    "type": "p",
+                    "content": "In the code below you see function declaration, but you may notice that there is no name. This is called an <b>anonymous function</b>. This just means that there is no name associated it, and this is because we have no need for it to have a name since it will be automatically called on the interval."
+                },
+                {
+                    "type": "code",
+                    "content": "setInterval(function() {\n\t// Do stuff here\n}, 100);"
+                },
+                {
+                    "type": "p",
+                    "content": "The first parameter of setInterval is a function and the second is the interval, in milliseconds."
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
+                }
+            ]
+        },
+        {
+            "name": "Handling Events",
+            "blocks": [
+                {
+                    "type": "h1",
+                    "content": "Handling Clicks"
+                },
+                {
+                    "type": "p",
+                    "content": "Event listening is when you bind a function to something, in this case, a tile in the grid, and wait  (listen) for that event to happen. This will allow for us to have <b>user interaction</b>."
+                },
+                {
+                    "type": "p",
+                    "content": "Just like with <b>setInterval()</b> we also use anonymous functions for event listening."
+                },
+                {
+                    "type": "p",
+                    "content": "Click listeners will call the function whenever the user clicks on it."
+                },
+                {
+                    "type": "code",
+                    "content": "onClick(0, 0, function() {\n\t// Do stuff here\n});"
+                },
+                {
+                    "type": "p",
+                    "content": "Mouseover listeners will call the function whenever the user moves their mouse over it."
+                },
+                {
+                    "type": "code",
+                    "content": "onMouseOver(0, 0, function() {\n\t// Do stuff here\n});"
+                },
+                {
+                    "type": "h2",
+                    "content": "Your Task"
                 }
             ]
         }
