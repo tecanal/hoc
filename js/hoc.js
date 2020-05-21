@@ -59,6 +59,16 @@ function _checkCode() {
     }
     // Level 4
     else if (_currentLevel == 4) {
+        for (let x = 0; x < _width; x++) {
+            for (let y = 0; y < _height; y++) {
+                // make sure the entire grid is colored
+                if (_moz.getTile(x, y).color == "#eeeeee")
+                    throw new Error("You did not color the entire grid.");
+            }
+        }
+    }
+    // Level 5
+    else if (_currentLevel == 5) {
         // rectangle dimensions as defined in the level task
         const length = 5;
         const height = 3;
@@ -77,10 +87,6 @@ function _checkCode() {
                 }
             }
         }
-    }
-    // Level 5
-    else if (_currentLevel == 5) {
-
     }
     // Level 6
     else if (_currentLevel == 6) {

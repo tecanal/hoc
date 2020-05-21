@@ -195,7 +195,11 @@
                 },
                 {
                     "type": "p",
-                    "content": "Your task is to fill a rectangle that has a length of 5 and a height of three. It can be any color, but it must be a rectange of the given dimensions."
+                    "content": "Your task is to use the <b>Color.random()</b> function to color each tile in the grid a random color. If you find yourself to be stuck, look at the code below for a hint."
+                },
+                {
+                    "type": "code",
+                    "content": "fill(0, 0, Color.random());"
                 }
             ]
         },
@@ -212,11 +216,35 @@
                 },
                 {
                     "type": "code",
-                    "content": "const moz = new Mosaic(5, 5);\n\nfunction drawLine() {\n\tfor (let x = 0; x < moz.width; x++) {\n\t\tmoz.setTileColor(x, 0, \"blue\");\n\t}\n}"
+                    "content": "function drawLine() {\n\tfor (let x = 0; x < getWidth(); x++) {\n\t\tfill(x, 0, \"blue\");\n\t}\n}\n\ndrawLine();"
+                },
+                {
+                    "type": "p",
+                    "content": "We can modify the drawLine() function in order to take a Number parameter <i>y</i> so that we can now draw a horizontal line at whatever y position we want."
+                },
+                {
+                    "type": "code",
+                    "content": "function drawLine(y) {\n\tfor (let x = 0; x < getWidth(); x++) {\n\t\tfill(x, y, \"blue\");\n\t}\n}\n\ndrawLine(2);"
+                },
+                {
+                    "type": "p",
+                    "content": "Below is an example of a function that returns a value. There are all kinds of reasons you would want to do this, like doing calculations."
+                },
+                {
+                    "type": "code",
+                    "content": "function getMyFavoriteColor() {\n\treturn \"green\";\n}\n\nsetFillColor(getMyFavoriteColor());\nfill(0, 0);"
                 },
                 {
                     "type": "h2",
                     "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Make a function called fillRect() that has four number parameters: x1, y1, x2, y2. You can use the code below as a way to get started. fill a rectangle that starts at (0, 0) and has a length of 5 and a height of 3. It can be any color, but it must be a rectange of the given dimensions. Nothing else should be drawn on the grid."
+                },
+                {
+                    "type": "code",
+                    "content": "function fillRect(x1, y1, x2, y2) {\n\t// Do stuff here\n}\n\nfillRect(0, 0, 4, 2);"
                 }
             ]
         },
