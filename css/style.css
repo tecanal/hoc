@@ -50,6 +50,12 @@ nav ul li a.completed {
     font-size: 1rem; 
 }
 
+#optionsButton button {
+    background-color: lavender;
+    height: 100%;
+    font-size: 1rem; 
+}
+
 #lessons p + ul, #lessons p + ol { margin-top: -.75rem; }
 #lessons pre  { position: relative; }
 .copyToEditor { position: absolute; top: 5px; right: 5px; content: "Copy to Editor"; }

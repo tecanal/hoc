@@ -20,12 +20,12 @@
             <ul id="lessonSelector">
                 <li id="rootNode" style="display: none;"></li>
 
-                <!-- <li class="pull-right">
-                    <button onclick="runCode()">Run Code</button>
-                </li> -->
-
-                <li class="pull-right">
+                <li id="runCodeButton" class="pull-right">
                     <button id="runCode" class="button-glow" onclick="runCode()">Run Code</button>
+                </li>
+
+                <li id="optionsButton">
+                    <button onclick="showOptions()">More...</button>
                 </li>
             </ul>
         </nav>
@@ -65,6 +65,21 @@
                         
                         <p>
                             Welcome to the TeCanal Hour of Code challenge.
+                        </p>
+                    </div>
+
+                    <div id="options">
+                        <p>
+                            <input type="checkbox" id="includeConsole" name="includeConsole" checked>
+                            <label for="includeConsole">Include Console in Exported Page</label>
+                        </p>
+                       
+                        <p>
+                            <button onclick="exportPage()">Export Code to HTML Page</button>
+                        </p>
+                        
+                        <p>
+                            <button onclick="shareCode()">Share Code with URL</button>
                         </p>
                     </div>
 

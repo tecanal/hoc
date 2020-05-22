@@ -210,15 +210,18 @@ function exportPage() {
     // get API functions from the js file
     fetch("js/api.js")
     .then(response => response.text())
-    .then(scriptText => {
+    .then(async (apiScriptText) => {
         let html;
+
+        const response = await fetch("js/hoc.js");
+        const hocScriptText = await response.text();
 
         // if the exported page needs console
         if (document.getElementById("includeConsole").checked) {
             // build html of page
             const style = "html {  font-family: sans-serif; } table { border-collapse: collapse; margin: auto; } table, th, td { border: 1px solid black; } td { padding: 20px; } #console { width: 50%; margin: auto; box-sizing: border-box; padding: 10px; margin-top: 10px; background: white; border: 1px solid gray; height: 30%; overflow-y: scroll; }";
 
-            const scripts = "<script>" + scriptText + '(function() { const oldLog = console.log; const consoleEl = document.getElementById("console"); console.log = message => {consoleEl.innerHTML += message + "<br>"; consoleEl.scrollTop = consoleEl.scrollHeight; oldLog.apply(console, arguments);} })();' + "</script>" + "<script>" + editor.getValue() + "</script>";
+            const scripts = "<script>" + apiScriptText + '(function() { const oldLog = console.log; const consoleEl = document.getElementById("console"); console.log = message => {consoleEl.innerHTML += message + "<br>"; consoleEl.scrollTop = consoleEl.scrollHeight; oldLog.apply(console, arguments);} })();' + "</script>" + "<script>" + hocScriptText + "</script>" + "<script>" + editor.getValue() + "</script>";
 
             html = "<html><head><title>Mosaic Export</title><style>" + style +'</style></head><body><table id="mosaic"></table><div id="console"></div>' + scripts + "</body></html>";
         }
@@ -226,7 +229,7 @@ function exportPage() {
             // build html of page
             const style = "html {  font-family: sans-serif; } table { border-collapse: collapse; margin: auto; } table, th, td { border: 1px solid black; } td { padding: 20px; } #console { width: 50%; margin: auto; box-sizing: border-box; padding: 10px; margin-top: 10px; background: white; border: 1px solid gray; height: 30%; overflow-y: scroll; }";
 
-            const scripts = "<script>" + scriptText + "</script>" + "<script>" + editor.getValue() + "</script>";
+            const scripts = "<script>" + apiScriptText + "</script>"  + "<script>" + hocScriptText + "</script>" + "<script>" + editor.getValue() + "</script>";
 
             html = "<html><head><title>Mosaic Export</title><style>" + style +'</style></head><body><table id="mosaic"></table>' + scripts + "</body></html>";
         }
@@ -287,6 +290,7 @@ function shareCode() {
  */
 function renderLessons() {
     const lessonSelector = document.getElementById("lessonSelector");
+    const lastChild = document.getElementById("runCodeButton");
 
     fetch("data/lessons.json")
     .then(response => response.json())
@@ -309,7 +313,7 @@ function renderLessons() {
             li.appendChild(a);
 
             // appendTo()
-            lessonSelector.insertBefore(li, lessonSelector.lastElementChild);
+            lessonSelector.insertBefore(li, lastChild);
 
             // render the blocks for that lesson
             renderBlocks(lesson.blocks, lessonContainer);
@@ -325,8 +329,21 @@ function renderLessons() {
         li.appendChild(a);
 
         // appendTo()
-        lessonSelector.insertBefore(li, lessonSelector.lastElementChild);
+        lessonSelector.insertBefore(li, lastChild);
     });
+}
+
+function showOptions() {
+    const modal = document.getElementById("myModal");
+
+    // show modal
+    modal.style.display = "block";
+    
+    // hide other modal content
+    document.getElementById("lessons").style.display = "none";
+    document.getElementById("welcome").style.display = "none";
+
+    document.getElementById("options").style.display = "";
 }
 
 /**
@@ -350,8 +367,9 @@ function openModal(index) {
     // show modal
     modal.style.display = "block";
 
-    // hide welcome modal content
+    // hide other modal content
     document.getElementById("welcome").style.display = "none";
+    document.getElementById("options").style.display = "none";
 
     document.getElementById("lessons").style.display = "";
 
@@ -376,8 +394,9 @@ function welcomeModal() {
     // show modal
     modal.style.display = "block";
 
-    // hide all lessons
+    // hide other modal content
     document.getElementById("lessons").style.display = "none";
+    document.getElementById("options").style.display = "none";
 
     document.getElementById("welcome").style.display = "";
 }
