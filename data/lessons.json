@@ -65,6 +65,22 @@
                     "content": "let myVariable = 5; // Number\nmyVariable = \"purple\"; // String\nmyVariable = false; // Boolean\nmyVariable = [1, 2, 3]; // Array"
                 },
                 {
+                    "type": "p",
+                    "content": "You have already seen the most basic assignment operator which is just the equals sign, but you can also combine the equals sign with an arithmetic operator to utilize different assignment operators that help save the amount of typing you have to do."
+                },
+                {
+                    "type": "code",
+                    "content": "let count = 5;\n\ncount += 4;\ncount -= 3;\ncount *= 1;\ncount /= 2;"
+                },
+                {
+                    "type": "p",
+                    "content": "If you are just adding or subtracting one from a variable, there are additional shorthand operators to help you."
+                },
+                {
+                    "type": "code",
+                    "content": "let count = 0;\n\ncount++;\ncount--;"
+                },
+                {
                     "type": "h2",
                     "content": "Your Task"
                 },
@@ -100,7 +116,7 @@
             ]
         },
         {
-            "name": "Conditionals",
+            "name": "Conditionals and Loops",
             "blocks": [
                 {
                     "type": "h1",
@@ -123,21 +139,12 @@
                     "content": "if (grade >= 90) {\n\t// Do stuff here\n}\nelse if (grade >= 80) {\n\t// Do stuff here\n}\nelse {\n\t// Do stuff here\n}"
                 },
                 {
-                    "type": "h2",
-                    "content": "Your Task"
-                }
-            ]
-        },
-        {
-            "name": "Loops",
-            "blocks": [
-                {
                     "type": "h1",
                     "content": "Loops"
                 },
                 {
                     "type": "p",
-                    "content": "There are three types of loops."
+                    "content": "There are two main types of loops."
                 },
                 {
                     "type": "ol",
@@ -145,10 +152,6 @@
                         {
                             "type": "li",
                             "content": "While Loop: This loop initially checks for a condition to be true, and will execute the body until that condition is false."
-                        },
-                        {
-                            "type": "li",
-                            "content": "Do-While Loop: This loop will execute the body and then check whether a condition is true or false to execute the body again or exit the loop."
                         },
                         {
                             "type": "li",
@@ -282,11 +285,11 @@
             ]
         },
         {
-            "name": "Handling Events",
+            "name": "Handling User Interaction Events",
             "blocks": [
                 {
                     "type": "h1",
-                    "content": "Handling Clicks"
+                    "content": "Handling User Interaction Events"
                 },
                 {
                     "type": "p",

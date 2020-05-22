@@ -43,22 +43,18 @@ function _checkCode() {
     // if the user hasn't clicked on a level yet
     if (_currentLevel === 0) return;
     
-    // Level 1
+    // Level 1: What is Code?
     if (_currentLevel == 1) {
         if (_moz.getTile(0, 0).color != "black" || _moz.getTile(0, 0).borderColor != "red")
             throw new Error("The fill or stroke color of tile (0, 0) is not the right color.");
     }
-    // Level 2
+    // Level 2: Variables
     else if (_currentLevel == 2) {
         if (!["red", "green", "blue", "yellow", "purple"].includes(_moz.getTile(0, 1).color))
             throw new Error("You did not fill the tile (0, 1) with a correct color.");
     }
-    // Level 3
+    // Level 3: Conditionals and Loops
     else if (_currentLevel == 3) {
-
-    }
-    // Level 4
-    else if (_currentLevel == 4) {
         for (let x = 0; x < _width; x++) {
             for (let y = 0; y < _height; y++) {
                 // make sure the entire grid is colored
@@ -67,8 +63,8 @@ function _checkCode() {
             }
         }
     }
-    // Level 5
-    else if (_currentLevel == 5) {
+    // Level 4: Creating Functions
+    else if (_currentLevel == 4) {
         // rectangle dimensions as defined in the level task
         const length = 5;
         const height = 3;
@@ -88,12 +84,12 @@ function _checkCode() {
             }
         }
     }
-    // Level 6
-    else if (_currentLevel == 6) {
+    // Level 5: Setting Intervals
+    else if (_currentLevel == 5) {
 
     }
-    // Level 7
-    else if (_currentLevel == 7) {
+    // Level 6: Handling User Interaction Events
+    else if (_currentLevel == 6) {
 
     }
     // If not a valid level number, exit before trying to mark as complete
