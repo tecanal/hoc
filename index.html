@@ -20,8 +20,12 @@
             <ul id="lessonSelector">
                 <li id="rootNode" style="display: none;"></li>
 
-                <li id="runCode">
-                    <button class="button-glow" onclick="runCode()" style="float: right">Run Code</button>
+                <!-- <li class="pull-right">
+                    <button onclick="runCode()">Run Code</button>
+                </li> -->
+
+                <li class="pull-right">
+                    <button id="runCode" class="button-glow" onclick="runCode()">Run Code</button>
                 </li>
             </ul>
         </nav>
@@ -90,6 +94,7 @@
         <script src="js/jquery.slim.min.js"></script>
         <script src="js/jquery-resizable.min.js"></script>
 
+        <script src="js/lzma.js"></script>
         <script src="https://unpkg.com/esprima@4.0.1/dist/esprima.js"></script>
 
         <script src="js/api.js"></script>

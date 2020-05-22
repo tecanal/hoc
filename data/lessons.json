@@ -29,7 +29,11 @@
                 },
                 {
                     "type": "p",
-                    "content": "Your task for this level is just to hit the Run Code button to see the code in action."
+                    "content": "Your task for this level is just to hit the Run Code button to see the code in action. If you changed the code in the editor, it is below for you to copy back into the editor."
+                },
+                {
+                    "type": "code",
+                    "content": "setFillColor(\"black\");\nfill(0, 0);\n\nsetStrokeColor(\"red\");\nstroke(0, 0);"
                 }
             ]
         },

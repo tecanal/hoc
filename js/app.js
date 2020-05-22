@@ -1,4 +1,5 @@
 const synth = window.speechSynthesis;
+const my_lzma = new LZMA("js/lzma_worker.js");
 
 let delay;
 let firstRun = true;
@@ -33,6 +34,26 @@ window.onload = () => {
             "Cmd-/": instance => commentSelection()
         }      
     });
+
+    if (window.location.hash && window.location.hash.indexOf("?") != -1) {
+        const hash = window.location.hash;
+        const encodedData = hash.substring(2);
+
+        const rawData = atob(encodedData);
+
+        const rawLength = rawData.length;
+        let array = new Uint8Array(new ArrayBuffer(rawLength));
+
+        for (let i = 0; i < rawLength; i++) {
+            array[i] = rawData.charCodeAt(i);
+        }
+
+        my_lzma.decompress(array, result => {
+            const editor = document.querySelector('.CodeMirror').CodeMirror;
+
+            editor.setValue(result);
+        });
+    }
 
     function commentSelection() {
         const getSelectedRange = () => ({ from: editor.getCursor(true), to: editor.getCursor(false) });
@@ -211,7 +232,7 @@ function exportPage() {
         }
 
         // create html blob with html we created
-        const blob = new Blob([html], { type: "text/html" });
+        const blob = new Blob([ html ], { type: "text/html" });
 
         // create a download link
         const el = window.document.createElement("a");
@@ -222,6 +243,42 @@ function exportPage() {
         document.body.appendChild(el);
         el.click();     
         document.body.removeChild(el);
+    });
+}
+
+/**
+ * Create a URL that can be used to share code.
+ */
+function shareCode() {
+    // get user code from editor
+    const editor = document.querySelector('.CodeMirror').CodeMirror;
+    const code = editor.getValue();
+
+    // compress code with LZMA
+    my_lzma.compress(code, 9, result => {
+        // convert ByteArray into string and base64 encode it
+        const base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(result)));
+
+        // get current URL without any hash
+        const url = location.href.replace(location.hash, "");
+
+        // create a textarea element with the share URL
+        const textArea = document.createElement("textarea");
+        textArea.value = url + "#?" + base64String;
+
+        // add to body
+        document.body.appendChild(textArea);
+
+        // focus and select text to and copy to clipboard
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+
+        // cleanup and remove textarea element
+        document.body.removeChild(textArea);
+
+        // let the user know that the text was copied
+        alert("URL copied to clipboard");
     });
 }
 
@@ -257,6 +314,18 @@ function renderLessons() {
             // render the blocks for that lesson
             renderBlocks(lesson.blocks, lessonContainer);
         });
+
+        // add trophy end icon
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.id = "finishedCourse";
+        a.innerHTML = '<img style="height: 1.15rem; width: 1rem" src="https://image.flaticon.com/icons/svg/1152/1152912.svg">';
+        a.onclick = () => alert("You will unlock this trophy once you beat all the levels!");
+        a.target = "_blank";
+        li.appendChild(a);
+
+        // appendTo()
+        lessonSelector.insertBefore(li, lessonSelector.lastElementChild);
     });
 }
 
@@ -504,7 +573,7 @@ function renderBlocks(blocks, parent) {
                 const copyButton = document.createElement("span");
                 copyButton.className = "copyToEditor";
                 copyButton.innerHTML = "Copy to Editor";
-                copyButton.onclick = () => editor.setValue(block.content);
+                copyButton.onclick = () => editor.setValue(editor.getValue() + "\n\n" + block.content);
 
                 el.appendChild(copyButton);
             }

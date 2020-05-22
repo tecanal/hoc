@@ -41,9 +41,9 @@ nav ul li a.completed {
     color: white;
 }
 
-#runCode { margin-left: auto; }
+.pull-right { margin-left: auto; }
 
-#runCode button {
+#runCode {
     background-color: #28A745; 
     color: white; 
     height: 100%;

@@ -104,6 +104,18 @@ function _checkCode() {
     // mark the lesson as completed
     const lessonSelector = document.getElementById("lessonSelector");
     lessonSelector.children[_currentLevel].children[0].classList.add("completed");
+
+   
+    if (document.getElementsByClassName("completed").length == 7) {
+        document.getElementById("finishedCourse").onclick = () => {};
+        document.getElementById("finishedCourse").href = "https://code.org/api/hour/finish";
+        document.getElementById("finishedCourse").classList.add("button-glow");
+
+        console.log("Congratulations, you have completed all of the levels!");
+    }
+    else {
+        console.log("Congratulations, you beat the level!");
+    }
 }
 
 /**
