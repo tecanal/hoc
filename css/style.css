@@ -44,16 +44,38 @@ nav ul li a.completed {
 .pull-right { margin-left: auto; }
 
 #runCode {
-    background-color: #28A745; 
+    background-color: #28A745;
+    border-color: #28A745;
     color: white; 
     height: 100%;
-    font-size: 1rem; 
+    font-size: 1rem;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #optionsButton button {
-    background-color: lavender;
+    background-color: #ffc107;
+    border-color: #ffc107;
     height: 100%;
-    font-size: 1rem; 
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#options input[type="checkbox"] {
+    font-size: inherit;
+    margin: 0;
+}
+
+#options button {
+    color: white;
+    background-color: #28A745;
+    border-color: #28A745;
+    font-size: 1rem;
+    padding: .375rem .75rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #lessons p + ul, #lessons p + ol { margin-top: -.75rem; }

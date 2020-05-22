@@ -142,7 +142,7 @@ window.onload = () => {
     renderLessons();
 
     // show the welcome modal
-    // welcomeModal();
+    welcomeModal();
 }
 
 /**
@@ -420,9 +420,6 @@ function clearConsole() {
  * Handle the run code button click to run code for the first time.
  */
 function runCode() {
-    // remove button glow
-    document.getElementById("runCode").classList.toggle("button-glow");
-
     // clear console
     clearConsole();
 

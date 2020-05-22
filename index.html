@@ -21,11 +21,11 @@
                 <li id="rootNode" style="display: none;"></li>
 
                 <li id="runCodeButton" class="pull-right">
-                    <button id="runCode" class="button-glow" onclick="runCode()">Run Code</button>
+                    <button id="runCode" onclick="runCode()">Run Code</button>
                 </li>
 
                 <li id="optionsButton">
-                    <button onclick="showOptions()">More...</button>
+                    <button onclick="showOptions()">Options</button>
                 </li>
             </ul>
         </nav>
@@ -50,7 +50,7 @@
 
         <div id="bottomShelf">
             <button id="edit" onclick="editMobile()">Edit</button>
-            <button id="execute" class="button-glow" onclick="runMobile()">Execute</button>
+            <button id="execute" onclick="runMobile()">Execute</button>
         </div>
 
         <div id="myModal" class="modal">
@@ -64,22 +64,35 @@
                         <h1>Hello!</h1>
                         
                         <p>
-                            Welcome to the TeCanal Hour of Code challenge.
+                            Welcome to the TeCanal Hour of Code challenge! If you look at the top menu, you will see the level icons. Please click on Level 1 to get started.
                         </p>
                     </div>
 
                     <div id="options">
+                        <h2>Export Code to HTML Page</h2>
+                        <p>
+                            This allows you to generate a downloadable HTML file, which automatically runs your code and displays the results. You can open it up in any browser, which makes it great if you made a game and want to download it and play it whenever you want.
+                        </p>
+
                         <p>
                             <input type="checkbox" id="includeConsole" name="includeConsole" checked>
                             <label for="includeConsole">Include Console in Exported Page</label>
                         </p>
+
+                        <p>
+                            If you choose to not include the console in the exported page, you will not be able to see console.log() messages, or any errors. If your program does not have these, then feel free to not include console in the exported page for a more minimal look.
+                        </p>
                        
                         <p>
-                            <button onclick="exportPage()">Export Code to HTML Page</button>
+                            <button onclick="exportPage()">Export</button>
                         </p>
                         
+                        <h2>Share Code With URL</h2>
                         <p>
-                            <button onclick="shareCode()">Share Code with URL</button>
+                            This allows you to create a link that contains all of your code. You can then send/share this link wherever, and if someone clicks on the link, it will open up this website with your code already loaded into the editor.
+                        </p>
+                        <p>
+                            <button onclick="shareCode()">Share</button>
                         </p>
                     </div>
 
