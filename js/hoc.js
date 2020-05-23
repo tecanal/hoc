@@ -25,6 +25,9 @@ function _reset() {
             onMouseOver(x, y, () => {});
         }
     }
+
+    for (let i = 1; i < 999999; i++)
+        window.clearInterval(i);
 }
 
 /**
@@ -39,27 +42,43 @@ function _setCurrentLevel(level) {
 /**
  * Check the user's code to see if they have correctly completed the lesson.
  */
-function _checkCode() {
+async function _checkCode() {
     // if the user hasn't clicked on a level yet
     if (_currentLevel === 0) return;
     
     // Level 1: What is Code?
     if (_currentLevel == 1) {
-        if (_moz.getTile(0, 0).color != "black" || _moz.getTile(0, 0).borderColor != "red")
+        if (_moz.getTile(0, 0).color != "black" || _moz.getTile(0, 0).borderColor != "red") {
             throw new Error("The fill or stroke color of tile (0, 0) is not the right color.");
+        }
     }
     // Level 2: Variables
     else if (_currentLevel == 2) {
-        if (!["red", "green", "blue", "yellow", "purple"].includes(_moz.getTile(0, 1).color))
+        if (!["red", "green", "blue", "yellow", "purple"].includes(_moz.getTile(0, 1).color)) {
             throw new Error("You did not fill the tile (0, 1) with a correct color.");
+        }
     }
     // Level 3: Conditionals and Loops
     else if (_currentLevel == 3) {
-        for (let x = 0; x < _width; x++) {
-            for (let y = 0; y < _height; y++) {
-                // make sure the entire grid is colored
-                if (_moz.getTile(x, y).color == "#eeeeee")
-                    throw new Error("You did not color the entire grid.");
+        for (let x = 0; x < getWidth(); x++) {
+            for (let y = 0; y < getHeight(); y++) {
+                if (x % 2 == 0) {
+                    if (y % 2 == 0) {
+                        if (_moz.getTile(x, y).color == "#eeeeee") {
+                            throw new Error("You did not color a tile with even x and even y coordinate.");
+                        }
+                    }
+                    else {
+                        if (_moz.getTile(x, y).color != "#eeeeee") {
+                            throw new Error("You incorrecly colored a tile with an odd y coordinate.");
+                        }
+                    }
+                }
+                else {
+                    if (_moz.getTile(x, y).color != "#eeeeee") {
+                        throw new Error("You incorrecly colored a tile with an odd x coordinate.");
+                    }
+                }
             }
         }
     }
@@ -73,24 +92,67 @@ function _checkCode() {
             for (let y = 0; y < _height; y++) {
                 // if inside of the rectangle, make sure it is all colored
                 if (x < length && y < height) {
-                    if (_moz.getTile(x, y).color == "#eeeeee")
+                    if (_moz.getTile(x, y).color == "#eeeeee") {
                         throw new Error("You did not color the full region of the rectangle that was described in the task.");
+                    }
                 }
                 // if outside the rectangle, make sure it is not colored
                 else {
-                    if (_moz.getTile(x, y).color != "#eeeeee")
+                    if (_moz.getTile(x, y).color != "#eeeeee") {
                         throw new Error("You colored outside the region of the rectangle that was described in the task.");
+                    }
                 }
             }
         }
     }
     // Level 5: Setting Intervals
     else if (_currentLevel == 5) {
+        const middle = [[4, 4], [4, 5], [5, 4], [5, 5]];
 
+        for (const tile of middle) {
+            if (_moz.getTile(tile[0], tile[1]).color != "blue") {
+                stopRunning();
+
+                throw new Error("You did not set the middle tiles to blue initially.");
+            }
+        }
+
+        const sleep = m => new Promise(r => setTimeout(r, m));
+
+        await sleep(500);
+
+        for (const tile of middle) {
+            if (_moz.getTile(tile[0], tile[1]).color != "orange") {
+                stopRunning();
+
+                throw new Error("The tiles did not change to orange on interval.");
+            }
+        }
     }
     // Level 6: Handling User Interaction Events
     else if (_currentLevel == 6) {
+        for (let x = 0; x < _width; x++) {
+            for (let y = 0; y < _height; y++) {
+                if (_moz.getTile(x, y).color != "blue") {
+                    throw new Error("You did not initially set all tiles to blue");
+                }
+            }
+        }
 
+        const x = Math.floor(Math.random() * _width);
+        const y = Math.floor(Math.random() * _height);
+
+        _moz.getTile(x, y).cellRef.click();
+
+        if (_moz.getTile(x, y).color != "red") {
+            throw new Error("You did not set the color to red on click.");
+        }
+
+        _moz.getTile(x, y).cellRef.click();
+
+        if (_moz.getTile(x, y).color != "blue") {
+            throw new Error("You did not set the color back to blue on click.");
+        }
     }
     // If not a valid level number, exit before trying to mark as complete
     else {
@@ -101,8 +163,8 @@ function _checkCode() {
     const lessonSelector = document.getElementById("lessonSelector");
     lessonSelector.children[_currentLevel].children[0].classList.add("completed");
 
-   
-    if (document.getElementsByClassName("completed").length == 7) {
+    // if user has completed all levels
+    if (document.getElementsByClassName("completed").length == 6) {
         document.getElementById("finishedCourse").onclick = () => {};
         document.getElementById("finishedCourse").href = "https://code.org/api/hour/finish";
         document.getElementById("finishedCourse").classList.add("button-glow");

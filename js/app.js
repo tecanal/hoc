@@ -569,7 +569,6 @@ function stopRunning() {
     // re-enable the run code button to restart the animation
     runCodeButton.disabled = false;
     runCodeButton.innerHTML = "Run Code";
-    runCodeButton.classList.toggle("button-glow");
 
     // stop auto-run of code
     autoRun = false;
@@ -665,7 +664,7 @@ function executeCode() {
     let editor = document.querySelector('.CodeMirror').CodeMirror;
 
     // instrument code to prevent infinite loops
-    let code = "(async function() { _reset();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n_checkCode();\n })().catch(e => console.error(e))";
+    let code = "(async function() { _reset();\n" + addInfiniteLoopProtection(editor.getValue()) + "\n_checkCode().catch(e => console.error(e));\n })().catch(e => console.error(e))";
     
     // add code as a script to page + execute
     let script = document.createElement('script');

@@ -135,8 +135,12 @@
                     "content": "If you want to check multiple conditions after each other, you can use else if. If, else if, and else statements are evaluated in sequential order, so you must be careful. If you have an else or an else if, you must have an if before it, but if you have an if, you do not need anything additional."
                 },
                 {
+                    "type": "p",
+                    "content": "You can also put if statements inside of other if statements, this is called <b>nesting</b>."
+                },
+                {
                     "type": "code",
-                    "content": "if (grade >= 90) {\n\t// Do stuff here\n}\nelse if (grade >= 80) {\n\t// Do stuff here\n}\nelse {\n\t// Do stuff here\n}"
+                    "content": "if (grade >= 90) {\n\tif (grade >= 94) {\n\t\t// A+\n\t}\n\telse {\n\t\t// A\n\t}\n}\nelse if (grade >= 80) {\n\t// Do stuff here\n}\nelse {\n\t// Do stuff here\n}"
                 },
                 {
                     "type": "h1",
@@ -202,7 +206,11 @@
                 },
                 {
                     "type": "p",
-                    "content": "Your task is to use the <b>Color.random()</b> function to color each tile in the grid a random color. If you find yourself to be stuck, look at the code below for a hint."
+                    "content": "Your task is to use the <b>Color.random()</b> function to color the tiles in the grid that have an even <i>x</i> coordinate and an even <i>y</i> coordinate a random color. If you find yourself to be stuck, look at the code snippets below for some hints."
+                },
+                {
+                    "type": "code",
+                    "content": "// % is modulo division which means do division but only keep the remainders\nif (x % 2 == 0) {\n\t// Divided by two with no remainder means it's even\n}"
                 },
                 {
                     "type": "code",
@@ -281,6 +289,18 @@
                 {
                     "type": "h2",
                     "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Your task is to have the middle four tiles [(4, 4), (5, 4), (4, 5), (5, 5)] alternate between blue and orange every half second (500 ms). The tiles should be colored blue before the interval function even starts."
+                },
+                {
+                    "type": "p",
+                    "content": "If you get stuck, look at the code snippet below for a hint."
+                },
+                {
+                    "type": "code",
+                    "content": "// You can use this function to get the fill color of a tile\ngetFill(4, 4)"
                 }
             ]
         },
@@ -318,6 +338,10 @@
                 {
                     "type": "h2",
                     "content": "Your Task"
+                },
+                {
+                    "type": "p",
+                    "content": "Your task is to add a click listener to every tile in the grid. You should initially set all tiles to blue. When the tile is clicked it should check the fill color. If the tile is blue, then turn the tile to red. If the tile is red, turn it to blue."
                 }
             ]
         }
