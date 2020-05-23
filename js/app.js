@@ -140,9 +140,10 @@ window.onload = () => {
 
     // render modal text from .json data files
     renderLessons();
+    renderDocs();
 
     // show the welcome modal
-    welcomeModal();
+    // welcomeModal();
 }
 
 /**
@@ -333,6 +334,136 @@ function renderLessons() {
     });
 }
 
+/**
+ * Convert docs.json into HTML for the help/API Reference section.
+ */
+function renderDocs() {
+    const getObjectForCall = (api, isStatic) => {
+        if (isStatic)
+            return api;
+
+        if (api == "Mosaic")
+            return "";
+        else
+            return api;
+    }
+
+    const getRandomArg = type => {
+        if (type == "Integer") 
+            return Math.ceil(Math.random() * 15);
+        // from: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+        else if (type == "String")
+            return '"' + Math.random().toString(36).replace(/[^a-z]+/g, '') + '"';
+        else if (type == "Color")
+            return '"' + Color.random() + '"';
+        else if (type == "Function")
+            return "function() { console.log(\"" + Math.random().toString(36).replace(/[^a-z]+/g, '') + '"); }';
+        else if (type == "[Color]")
+            return ['"' + Color.random() + '"', '"' + Color.random() + '"'];
+        else if (type == "Style") {
+            const styles = ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"];
+
+            return '"' + styles[Math.floor(Math.random() * styles.length)] + '"';
+        }
+    }
+
+    fetch("data/docs.json")
+    .then(response => response.json())
+    .then(data => {
+        data.docs.forEach(api => {
+            const apiContainer = document.createElement("div");
+            apiContainer.id = api.name;
+            apiContainer.className = "panel";
+
+            api.functions.forEach(func => {
+                const params = func.parameters.map(param => param.name);
+
+                // fill in parameter values with arguments to create example call
+                const args = func.parameters.map(param => {if (param.type) return getRandomArg(param.type); else return param.content});
+
+                // reconstruct what the function header is, and what a function call would look like
+                const functionHeader = func.name + "(" + params.join(", ") + ")";
+
+                // handle special function cases
+                let functionCall;
+                if (func.isConstructor)
+                    functionCall = "new " + api.name + "(" + args.join(", ") + ");";
+                else if (func.isAsync) {
+                    functionCall = "await " + getObjectForCall(api.name, func.isStatic) + "." + func.name + "(" + args.join(", ") + ");";
+
+                    func.notes = "This function is asynchronous.";
+                }
+                else {
+                    const obj = getObjectForCall(api.name, func.isStatic);
+                    
+                    if (obj === "") {
+                        functionCall = func.name + "(" + args.join(", ") + ");";
+                    }
+                    else {
+                        functionCall = obj + "." + func.name + "(" + args.join(", ") + ");";
+                    }
+                }
+                    
+                // add function header and description
+                let blocks = [];
+                blocks.push({
+                    type: "p", 
+                    content: "<b>" + functionHeader + "</b>: " + func.description
+                });
+
+                // add function notes to blocks if defined
+                if (func.notes) {
+                    blocks.push({
+                        type: "p",
+                        content: "<i>Note: " + func.notes + "</i>"
+                    });
+                }
+
+                // add function returns to blocks if defined
+                if (func.returns) {
+                    blocks.push({
+                        type: "p",
+                        content: "<b>Returns: </b> " + func.returns.type
+                    });
+                }
+                
+                // add code to show how to call the function
+                blocks.push({
+                    type: "code", 
+                    content: functionCall 
+                })
+
+                // render blocks into HTML
+                renderBlocks(blocks, apiContainer);
+            });
+            
+            // accordion toggle button
+            const button = document.createElement("button");
+            button.className = "accordion";
+            button.innerText = api.name;
+            button.onclick = () => {
+                button.classList.toggle("active");
+
+                // hide accordion
+                if (apiContainer.style.maxHeight) {
+                    apiContainer.style.maxHeight = null;
+                }
+                // show accordion
+                else {
+                    apiContainer.style.maxHeight = apiContainer.scrollHeight + "px";
+                }
+            }
+
+            // add elements to page
+            document.getElementById("docs").appendChild(button);
+            document.getElementById("docs").appendChild(apiContainer);
+        });
+    });
+}
+
+/**
+ * 
+ */
 function showOptions() {
     const modal = document.getElementById("myModal");
 

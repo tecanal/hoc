@@ -122,7 +122,7 @@ function _resize() {
 }
 
 /**
- * Get the fill color. The default is #eeeeee.
+ * Gets the global fill color. The default is #eeeeee.
  * @returns {String} fillColor
  */
 function getFillColor() {
@@ -135,6 +135,16 @@ function getFillColor() {
  */
 function setFillColor(color) {
     _fillColor = color;
+}
+
+/**
+ * Gets the fill color of a specific tile.
+ * @param {Number} x 
+ * @param {Number} y 
+ * @returns {String} fillColor
+ */
+function getFill(x, y) {
+    return _moz.getTile(x, y).color;
 }
 
 /**

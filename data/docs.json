@@ -1,0 +1,317 @@
+{
+    "docs": [
+        {
+            "name": "Mosaic",
+            "functions": [
+                {
+                    "name": "fill",
+                    "description": "Sets a tile's color to the default fill color.",
+                    "notes": "The default fill color is initially nothing, so you must always set the default fill color before using this version of fill().",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "fill",
+                    "description": "Sets a tile's color.",
+                    "notes": "You can set colors with HTML colors, hex, rgb(), or rgba() formats.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", "type": "Integer"
+                        }, 
+                        {
+                            "name": "color", 
+                            "type": "Color"
+                        } 
+                    ]
+                },
+                {
+                    "name": "getFill",
+                    "description": "Gets a tile's color.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "setFillColor",
+                    "description": "Sets the default fill color.",
+                    "parameters": [ 
+                        {
+                            "name": "color", 
+                            "type": "Color"
+                        } 
+                    ]
+                },
+                {
+                    "name": "getFillColor",
+                    "description": "Gets the default fill color.",
+                    "parameters": []
+                },
+                {
+                    "name": "stroke",
+                    "description": "Sets the border of a tile according to the default stroke color, width, and style..",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "setStrokeWidth",
+                    "description": "Sets the default stroke width.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "width",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "getStrokeWidth",
+                    "description": "Gets the default stroke width.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "setStrokeColor",
+                    "description": "Sets the default stroke color.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "width",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "getStrokeColor",
+                    "description": "Gets the default stroke color.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "setStrokeStyle",
+                    "description": "Sets the default stroke style.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "style",
+                            "type": "Style"
+                        }
+                    ]
+                },
+                {
+                    "name": "getStrokeColor",
+                    "description": "Gets the default stroke style.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "onClick",
+                    "description": "Sets a tile's on click function.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "func",
+                            "type": "Function"
+                        }
+                    ]
+                },
+                {
+                    "name": "onMouseOver",
+                    "description": "Sets a tile's on mouseover function.",
+                    "parameters": [ 
+                        { 
+                            "name": "x", 
+                            "type": "Integer"
+                        }, 
+                        {
+                            "name": "y", 
+                            "type": "Integer"
+                        },
+                        {
+                            "name": "func",
+                            "type": "Function"
+                        }
+                    ]
+                },
+                {
+                    "name": "setWidth",
+                    "description": "Set the width, or number of tiles across the grid.",
+                    "parameters": [
+                        {
+                            "name": "width",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "getWidth",
+                    "description": "Get the width, or number of tiles across the grid horizontally.",
+                    "parameters": []
+                },
+                {
+                    "name": "setHeight",
+                    "description": "Set the width, or number of tiles across the grid.",
+                    "parameters": [
+                        {
+                            "name": "width",
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "getHeight",
+                    "description": "Get the height, or number of tiles across the grid vertically.",
+                    "parameters": []
+                }
+            ]
+        },
+        {
+            "name": "Tile",
+            "functions": [
+                {
+                    "name": "setSize",
+                    "description": "Sets the size of the tiles that appear in the grid.",
+                    "isStatic": true,
+                    "parameters": [ 
+                        { 
+                            "name": "size", 
+                            "type": "Integer"
+                        }
+                    ]
+                },
+                {
+                    "name": "setRadius",
+                    "description": "Sets the circular-ness (radius) of the tiles that appear in the grid.",
+                    "isStatic": true,
+                    "parameters": [ 
+                        { 
+                            "name": "size", 
+                            "type": "Integer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Color",
+            "functions": [
+                {
+                    "name": "isSame",
+                    "description": "Checks if given colors are the same.",
+                    "notes": "You can pass arguments as an array, or list of arguments.",
+                    "isStatic": true,
+                    "parameters": [ 
+                        { 
+                            "name": "colors", 
+                            "content": "['red', '#FF0000']"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "functions": [
+                {
+                    "name": "play",
+                    "description": "Plays a sound file.",
+                    "isStatic": true,
+                    "parameters": [ 
+                        { 
+                            "name": "audioURL", 
+                            "content": "\"https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3\""
+                        }
+                    ]
+                },
+                {
+                    "name": "speak",
+                    "description": "Uses SpeechSynthesis to speak the text out-loud.",
+                    "isStatic": true,
+                    "parameters": [ 
+                        { 
+                            "name": "toSpeak", 
+                            "type": "String"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

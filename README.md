@@ -11,6 +11,7 @@ Created by [Rees Draminski](https://github.com/reesdraminski).
 * [js/hoc.js](js/hoc.js): Further Mosaic abstractions that are needed to make the Hour of Code more approachable.
 
 ## Content
+* [data/docs.json](data/docs.json): Documentation for the various APIs that can be used by the user.
 * [data/lessons.json](data/lessons.json): Basic JavaScript instruction to get the user started with the basics of JavaScript and Mosaic.
 
 ## Dependencies
