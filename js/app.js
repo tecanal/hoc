@@ -143,7 +143,8 @@ window.onload = () => {
     renderDocs();
 
     // show the welcome modal
-    // welcomeModal();
+    if (window.location.hostname != "localhost")
+        welcomeModal();
 }
 
 /**
@@ -593,60 +594,63 @@ function addInfiniteLoopProtection(code, timeout=2000) {
     let varStr = 'var %d = Date.now();\n';
     let checkStr = `\nif (Date.now() - %d > ${timeout}) { stopRunning(); throw new Error("Infinite loop detected. Please make changes and press Run Code when you are ready to try again."); break;}\n`;
 
-    esprima.parse(
-        code,
-        {
-            tolerant: true,
-            range: true
-        },
-        function(node) {
-            switch (node.type) {
-                case 'DoWhileStatement':
-                case 'ForStatement':
-                case 'ForInStatement':
-                case 'ForOfStatement':
-                case 'WhileStatement':
-                    let start = 1 + node.body.range[0];
-                    let end = node.body.range[1];
-                    let prolog = checkStr.replace('%d', varPrefix + loopId);
-                    let epilog = '';
+    try {
+        esprima.parse(
+            code,
+            {
+                tolerant: true,
+                range: true
+            },
+            function(node) {
+                switch (node.type) {
+                    case 'DoWhileStatement':
+                    case 'ForStatement':
+                    case 'ForInStatement':
+                    case 'ForOfStatement':
+                    case 'WhileStatement':
+                        let start = 1 + node.body.range[0];
+                        let end = node.body.range[1];
+                        let prolog = checkStr.replace('%d', varPrefix + loopId);
+                        let epilog = '';
 
-                    if (node.body.type !== 'BlockStatement') {
-                        // `while(1) doThat()` becomes `while(1) {doThat()}`
-                        prolog = '{' + prolog;
-                        epilog = '}';
-                        --start;
-                    }
+                        if (node.body.type !== 'BlockStatement') {
+                            // `while(1) doThat()` becomes `while(1) {doThat()}`
+                            prolog = '{' + prolog;
+                            epilog = '}';
+                            --start;
+                        }
 
-                    patches.push({
-                        pos: start,
-                        str: prolog
-                    });
+                        patches.push({
+                            pos: start,
+                            str: prolog
+                        });
 
-                    patches.push({
-                        pos: end,
-                        str: epilog
-                    });
+                        patches.push({
+                            pos: end,
+                            str: epilog
+                        });
 
-                    patches.push({
-                        pos: node.range[0],
-                        str: varStr.replace('%d', varPrefix + loopId)
-                    });
+                        patches.push({
+                            pos: node.range[0],
+                            str: varStr.replace('%d', varPrefix + loopId)
+                        });
 
-                    ++loopId;
+                        ++loopId;
 
-                    break;
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
-        }
-    );
+        );
 
-    /* eslint-disable no-param-reassign */
-    patches
-        .sort((a, b) => b.pos - a.pos)
-        .forEach(patch => code = code.slice(0, patch.pos) + patch.str + code.slice(patch.pos));
+        /* eslint-disable no-param-reassign */
+        patches
+            .sort((a, b) => b.pos - a.pos)
+            .forEach(patch => code = code.slice(0, patch.pos) + patch.str + code.slice(patch.pos));
+    }
+    catch (error) {}
 
     /* eslint-disable no-param-reassign */
     return code;
