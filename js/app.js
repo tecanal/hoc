@@ -357,6 +357,11 @@ function renderDocs() {
             return '"' + Math.random().toString(36).replace(/[^a-z]+/g, '') + '"';
         else if (type == "Color")
             return '"' + Color.random() + '"';
+        else if (type == "KeyString") {
+            const keys = "abcdefjhijklmnopqrstuvqxyz";
+
+            return '"' + keys[Math.floor(Math.random() * keys.length)] + '"';
+        }
         else if (type == "Function")
             return "function() { console.log(\"" + Math.random().toString(36).replace(/[^a-z]+/g, '') + '"); }';
         else if (type == "[Color]")
@@ -483,7 +488,6 @@ function showOptions() {
  */
 function clearEventListeners() {
     document.onclick = () => {};
-    document.onkeydown = () => {};
     document.onkeypress = () => {};
     document.onkeyup = () => {};
     document.onmouseover = () => {};

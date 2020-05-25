@@ -211,6 +211,20 @@
                     ]
                 },
                 {
+                    "name": "onKey",
+                    "description": "Sets a key's handler function.",
+                    "parameters": [ 
+                        { 
+                            "name": "key", 
+                            "type": "KeyString"
+                        }, 
+                        {
+                            "name": "func",
+                            "type": "Function"
+                        }
+                    ]
+                },
+                {
                     "name": "setWidth",
                     "description": "Set the width, or number of tiles across the grid.",
                     "parameters": [

@@ -1,3 +1,5 @@
+let _keyMap = {};
+
 let _width = 10;
 let _height = 10;
 
@@ -10,6 +12,23 @@ let _strokeStyle = "solid";
 let _strokeColor = "black";
 
 let _currentLevel = 0;
+
+/**
+ * Bind the onkeydown event to our handler function that allows for the onKey() function.
+ */
+document.onkeydown = e => _handleKeyDown(e);
+
+/**
+ * Handles onkeydown events with the keyMap that the user can define with their onKey() declarations.
+ * @param {Event} e 
+ */
+function _handleKeyDown(e) {
+    // if the key has a function mapped to it
+    if (e.key in _keyMap) {
+        // call the function that is mapped to the key
+        _keyMap[e.key]();
+    }
+}
 
 /**
  * Clears the Mosaic, this should only be called internally on every new runCode() call.
@@ -26,6 +45,10 @@ function _reset() {
         }
     }
 
+    // reset keymap
+    _keyMap = {};
+
+    // clear all intervals
     for (let i = 1; i < 999999; i++)
         window.clearInterval(i);
 }
@@ -372,4 +395,30 @@ function onClick(x, y, func) {
  */
 function onMouseOver(x, y, func) {
     _moz.setTileOnMouseOver(x, y, func);
+}
+
+/**
+ * A wrapper that allows seperate declarations of key listener functions.
+ * @param {String} key
+ * @param {Function} func
+ */
+function onKey(key, func) {
+    let keyEvent;
+	
+    // if is a letter key
+    if (key.length === 1) {
+        // key letters are lowercase in events
+        keyEvent = key.toLowerCase();
+    }
+    // if is some other key
+    else {
+        // other keys are in proper captalization in events
+        keyEvent = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase();
+    }
+	
+    // if the func is defined and is a function
+    if (func && typeof func == "function") {
+        // map the key to the function
+        _keyMap[keyEvent] = func;
+    }
 }
